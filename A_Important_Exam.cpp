@@ -29,36 +29,65 @@ ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
-    ll array[n];
+    int n, k;
+    cin >> n >> k;
+
+    string st="";
+    vector<string> v;
+    map<char,ll>mp;
     for (int i = 0; i < n; i++)
+    {
+        string s;
+        cin >> s;
+        st+=s;
+        v.push_back(s);
+    }
+    int arr[k+5];
+    for (int i = 0; i < k; i++)
     {
         cin >> arr[i];
     }
-    for (int i = 0; i < n; i++)
-    {
-        cin >> array[i];
-    }
     ll ans=0;
-    for(int i=0;i<n-1;i++)
+    for (int i = 0; i < k; i++)
     {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
+       ll a = 0, b = 0, c = 0, d = 0, e = 0;
+        for (int j = 0; j < n; j++)
         {
-            ans+=dif;
+            if (v[j][i]== 'A')
+            {
+                a++;
+            }
+            else if (v[j][i]== 'B')
+            {
+                b++;
+            }
+            else if (v[j][i]== 'C')
+            {
+                c++;
+            }
+            else if (v[j][i]== 'D')
+            {
+                d++;
+            }
+            else if (v[j][i]== 'E')
+            {
+                e++;
+            }
         }
+        int mx=max(a,max(b,max(c,max(d,e))));
+       // cout<<mx<<endl;
+       ans+=mx*arr[i];
+        
     }
-    cout<<ans+arr[n-1]<<endl;
+    cout<<ans<<endl;
 }
 
 int main()
 {
     optimize();
 
-    int t;
-    cin >> t;
+    int t = 1;
+    // cin>>t;
 
     while (t--)
     {

@@ -29,28 +29,24 @@ ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
-    ll array[n];
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i];
-    }
-    for (int i = 0; i < n; i++)
-    {
-        cin >> array[i];
-    }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
-    {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
-        {
-            ans+=dif;
+        int a1, a2, a4, a5;
+        cin >> a1 >> a2 >> a4 >> a5; 
+        int mx = 0;
+        vector<int>arr;
+        arr.push_back(a4 - a2); 
+        arr.push_back(a5 - a4 -a1); 
+        arr.push_back (a1 + a2); 
+        for (int i = 0; i < 3; i++) {
+            int a3 = arr[i];
+            int cnt = 0;
+            if (a3 == a1 + a2) cnt++;
+            if (a4 == a2 + a3) cnt++;
+
+            if (a5 == a3 + a4) cnt++;
+
+            mx = max(mx, cnt);
         }
-    }
-    cout<<ans+arr[n-1]<<endl;
+        cout << mx << endl; 
 }
 
 int main()

@@ -29,28 +29,65 @@ ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
 void solve()
 {
-    ll n;
+    int n;
     cin >> n;
-    ll arr[n];
-    ll array[n];
-    for (int i = 0; i < n; i++)
+    int arr[n];
+    for (int i = 1; i <= n; i++)
     {
         cin >> arr[i];
     }
-    for (int i = 0; i < n; i++)
+
+    int temp[n];
+    for (int i = 1; i <= n; i++)
     {
-        cin >> array[i];
+        temp[i] = arr[i];
     }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
+    ll psum[n] = {0};
+    for (int i = 1; i <= n; i++)
     {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
+        psum[i] = psum[i - 1] + arr[i];
+    }
+    // for (int i=1;i<=n;i++)
+
+    // {
+    //     cout << psum[i] << " ";
+    // }
+    int flag=0;
+    for (int i = 1; i <= n; i++)
+    {
+        if(arr[i]==psum[i-1])
         {
-            ans+=dif;
+            flag=1;
+            break;
         }
     }
-    cout<<ans+arr[n-1]<<endl;
+    sort(temp+1,temp+n+1);
+    if(temp[1]==temp[n])
+    {
+        cout<<"NO"<<endl;
+    }
+    else
+    {
+        if(flag==1)
+        {
+            cout<<"YES"<<endl;
+            swap(arr[1],arr[n]);
+            for(int i=1;i<=n;i++)
+            {
+                cout<<arr[i]<<" ";
+            }
+            cout<<endl;
+        }
+        else
+        {
+            cout<<"YES"<<endl;
+            for(int i=1;i<=n;i++)
+            {
+                cout<<arr[i]<<" ";
+            }
+            cout<<endl;
+        }
+    }
 }
 
 int main()

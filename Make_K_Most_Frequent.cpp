@@ -29,36 +29,62 @@ ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
 void solve()
 {
-    ll n;
-    cin >> n;
+    ll n,k;
+    cin>>n>>k;
     ll arr[n];
-    ll array[n];
-    for (int i = 0; i < n; i++)
+    map<ll,ll>mp,mpp;
+    ll mx=0;
+    for(int i=0;i<n;i++)
     {
-        cin >> arr[i];
+        cin>>arr[i];
+        mp[arr[i]]++;
+        mx=max(mx,mp[arr[i]]);
     }
-    for (int i = 0; i < n; i++)
+    if(mx==mp[k])
     {
-        cin >> array[i];
+        
+        cout<<0<<endl;
     }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
+    else
     {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
+            ll flag=0,cntt=0;
+        map<ll,ll>left,right;
+        for(int i=0;i<n;i++)
         {
-            ans+=dif;
+            left[arr[i]]++;
+            cntt=max(left[arr[i]],cntt);
+            if(left[k]==cntt)
+            {
+                flag=1;
+                break;
+            }
         }
+        ll cnt=0;
+         for(int i=n-1;i>=0;i--)
+        {
+            right[arr[i]]++;
+            cnt=max(right[arr[i]],cnt);
+            if(right[k]==cnt)
+            {
+                flag=1;
+                break;
+            }
+        }
+        if(flag==1)
+        {
+            cout<<1<<endl;
+        }
+        else
+        cout<<2<<endl;
     }
-    cout<<ans+arr[n-1]<<endl;
 }
 
 int main()
 {
     optimize();
 
-    int t;
-    cin >> t;
+    int t ;
+     cin>>t;
 
     while (t--)
     {

@@ -27,38 +27,39 @@ ll prfSum[N];
 ll gcd(ll a, ll b) { return __gcd(a, b); }
 ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
+bool iss(string b,string a)
+{
+    return b>a;
+}
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
-    ll array[n];
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i];
-    }
-    for (int i = 0; i < n; i++)
-    {
-        cin >> array[i];
-    }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
-    {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
-        {
-            ans+=dif;
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    string st= s;
+    bool f=false;
+    for (char c = 'a'; c <= 'z'; c++) {
+        string stt(n, c);
+        if (stt > s && string(stt.rbegin(), stt.rend()) > s) {
+            st = stt;
+            f = true;
+            break;
         }
     }
-    cout<<ans+arr[n-1]<<endl;
+    if(!f)
+    cout<<"-1"<<endl;
+    else
+    cout<<st<<endl;
+    
 }
 
 int main()
 {
     optimize();
 
-    int t;
-    cin >> t;
+    int t ;
+     cin>>t;
 
     while (t--)
     {

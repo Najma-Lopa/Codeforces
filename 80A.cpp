@@ -1,23 +1,82 @@
-#include<bits/stdc++.h>
+//* بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+
+#include <bits/stdc++.h>
 using namespace std;
+
+#define optimize()                \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0);
+#define endl '\n'
+#define ll long long
+#define fl float
+
+// Function to perform bit stuffing
+string bitStuffing(const string &input)
+{
+    string stuffed = ""; // Resultant string after bit stuffing
+    int count = 0;       // Counter for consecutive 1's
+
+    for (char bit : input)
+    {
+        if (bit == '1')
+        {
+            count++;
+            stuffed += bit;
+            // Stuff a '0' after five consecutive 1's
+            if (count == 5)
+            {
+                stuffed += '0';
+                count = 0; // Reset the counter
+            }
+        }
+        else
+        {
+            stuffed += bit;
+            count = 0; // Reset the counter if bit is 0
+        }
+    }
+    return stuffed;
+}
+
+// Function to perform bit unstuffing
+string bitUnstuffing(const string &input)
+{
+    string unstuffed = ""; // Resultant string after bit unstuffing
+    int count = 0;         // Counter for consecutive 1's
+
+    for (char bit : input)
+    {
+        if (bit == '1')
+        {
+            count++;
+            unstuffed += bit;
+            // Skip the stuffed 0 after five consecutive 1's
+            if (count == 5)
+            {
+                continue;
+            }
+        }
+        else
+        {
+            unstuffed += bit;
+            count = 0; // Reset the counter if bit is 0
+        }
+    }
+    return unstuffed;
+}
+
 int main()
 {
-    int ar[]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47};
-    int a,b;
-    cin>>a >>b;
-    int flag=0;
-    for(int i=0;i<15;i++)
-    {
-            if(ar[i]==a)
-            {
-                if(ar[i+1]==b)
-                    flag=1;
-                    else
-                        flag=0;
-            }
-    }
-            if(flag==1)
-                cout<< "YES";
-            else
-                cout<< "NO";
+    string data;
+    cout << "Enter the binary data to be transmitted: ";
+    cin >> data;
+
+    string stuffedData = bitStuffing(data);
+    cout << "Data after bit stuffing: " << stuffedData << endl;
+
+    string unstuffedData = bitUnstuffing(stuffedData);
+    cout << "Data after bit unstuffing: " << unstuffedData << endl;
+
+    return 0;
 }

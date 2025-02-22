@@ -29,36 +29,51 @@ ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
-    ll array[n];
-    for (int i = 0; i < n; i++)
+    int n,m;
+    cin>>n>>m;
+    int arr[n];
+    int arrr[m];
+    for(int i=0;i<n;i++)
     {
-        cin >> arr[i];
+        cin>>arr[i];
     }
-    for (int i = 0; i < n; i++)
+    sort(arr,arr+n);
+    for(int i=0;i<m;i++)
     {
-        cin >> array[i];
+        cin>>arrr[i];
     }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
-    {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
+    sort(arrr,arrr+m);
+    if(arr[0]==arrr[0])
+    cout<<arr[0]<<endl;
+    else
+    {   for(int i=0;i<n;i++)
         {
-            ans+=dif;
+        if(binary_search(arrr,arrr+m,arr[i]))
+            {
+                cout<<arr[i]<<endl;
+                return;
+            }
+        }
+        ll mn=min(arr[0],arrr[0]);
+        if(mn==arr[0])
+        {
+            
+            cout<<arr[0]<<arrr[0]<<endl;
+        }
+        else
+        {
+            
+            cout<<arrr[0]<<arr[0]<<endl;
         }
     }
-    cout<<ans+arr[n-1]<<endl;
 }
 
 int main()
 {
     optimize();
 
-    int t;
-    cin >> t;
+    int t = 1;
+    // cin>>t;
 
     while (t--)
     {

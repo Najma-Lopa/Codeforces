@@ -29,36 +29,34 @@ ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
 void solve()
 {
-    ll n;
-    cin >> n;
+    ll n,k;
+    cin>>n>>k;
     ll arr[n];
-    ll array[n];
-    for (int i = 0; i < n; i++)
+    for(int i=1;i<=n;i++)
     {
-        cin >> arr[i];
+        cin>>arr[i];
     }
-    for (int i = 0; i < n; i++)
+    sort(arr+1,arr+n+1);
+    for(int i=1;i<=n;i++)
     {
-        cin >> array[i];
+        prfSum[i]=prfSum[i-1]+arr[i];
     }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
-    {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
-        {
-            ans+=dif;
-        }
-    }
-    cout<<ans+arr[n-1]<<endl;
+    // for(int i=1;i<=n;i++)
+    // {
+    //     cout<<prfSum[i]<<" ";
+    // }
+    // cout<<endl;
+    ll p=binary_search(prfSum)
+    ll lw=lower_bound(prfSum+1,prfSum+n+1,k)-(prfSum+1);
+    cout<<lw<<endl;
 }
 
 int main()
 {
     optimize();
 
-    int t;
-    cin >> t;
+    int t = 1;
+    // cin>>t;
 
     while (t--)
     {

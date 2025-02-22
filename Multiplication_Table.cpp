@@ -21,44 +21,32 @@ const double PI = acos(-1);
 const double eps = 1e-9;
 const int inf = 2000000000;
 const ll infLL = 9000000000000000000;
-const int N = 2e5 + 123;
+const ll N = 2e5 + 123;
 ll prfSum[N];
 
 ll gcd(ll a, ll b) { return __gcd(a, b); }
 ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
-
+ll mx[N][N];
 void solve()
 {
     ll n;
-    cin >> n;
-    ll arr[n];
-    ll array[n];
-    for (int i = 0; i < n; i++)
+    cin>>n;
+    vector<ll>v;
+    for(int i=1;i<=n;i++)
     {
-        cin >> arr[i];
-    }
-    for (int i = 0; i < n; i++)
-    {
-        cin >> array[i];
-    }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
-    {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
+        for(int j=1;j<=n;j++)
         {
-            ans+=dif;
+
         }
     }
-    cout<<ans+arr[n-1]<<endl;
 }
 
 int main()
 {
     optimize();
 
-    int t;
-    cin >> t;
+    int t = 1;
+    // cin>>t;
 
     while (t--)
     {

@@ -27,43 +27,47 @@ ll prfSum[N];
 ll gcd(ll a, ll b) { return __gcd(a, b); }
 ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
-void solve()
-{
-    ll n;
-    cin >> n;
-    ll arr[n];
-    ll array[n];
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i];
-    }
-    for (int i = 0; i < n; i++)
-    {
-        cin >> array[i];
-    }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
-    {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
-        {
-            ans+=dif;
+int fun(vector<int> A) {
+    int mx = 1, cnt = 1;
+    int n=A.size();
+    for (int i = 1; i < n; i++) {
+        if (A[i] >= A[i - 1]) {
+            cnt++;
+            mx = max(mx, cnt);
+        } else {
+            cnt = 1;
         }
     }
-    cout<<ans+arr[n-1]<<endl;
+    return mx;
 }
 
-int main()
-{
-    optimize();
+void solve() {
+    int n, X;
+    cin >> n >> X;
+    vector<int> A(n);
+    for (int i = 0; i < n; i++) cin >> A[i];
 
-    int t;
-    cin >> t;
-
-    while (t--)
-    {
-        solve();
+    int ans = fun(A);
+    
+    for (int i = 0; i < n; i++) {
+        vector<int> B = A;
+        B[i] *= X;
+        ans = max(ans, fun(B));
     }
 
+    cout << ans << endl;
+}
+
+int main() {
+    optimize()
+    
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
     return 0;
 }
+
+
+

@@ -29,36 +29,29 @@ ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
-    ll array[n];
-    for (int i = 0; i < n; i++)
+    string s;
+    cin>>s;
+    cout<<s[0];
+    if(s[0]==s[2])
     {
-        cin >> arr[i];
+        cout<<"="<<s[2]<<endl;
     }
-    for (int i = 0; i < n; i++)
+    else if(s[0]>s[2])
     {
-        cin >> array[i];
+        cout<<">"<<s[2]<<endl;
     }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
+    else if(s[0]<s[2])
     {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
-        {
-            ans+=dif;
-        }
+        cout<<"<"<<s[2]<<endl;
     }
-    cout<<ans+arr[n-1]<<endl;
 }
 
 int main()
 {
     optimize();
 
-    int t;
-    cin >> t;
+    int t ;
+     cin>>t;
 
     while (t--)
     {

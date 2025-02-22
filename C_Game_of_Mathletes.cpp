@@ -29,28 +29,37 @@ ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll arr[n];
-    ll array[n];
+    int n, k;
+    cin >> n >> k;
+    int arr[n];
+    map<int, int> mp;
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
+        mp[arr[i]]++;
     }
-    for (int i = 0; i < n; i++)
+    ll ans = 0;
+    for (auto u : mp)
     {
-        cin >> array[i];
-    }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
-    {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
+        ll p = k - u.first;
+        auto b = mp.find(p);
+        if (b != mp.end())
         {
-            ans+=dif;
+            int cntb = b->second;
+            if (u.first == p)
+            {
+                ans += u.second / 2;
+            }
+            else
+            {
+                ll mn = min(u.second, cntb);
+                ans += mn;
+            }
         }
+        mp[u.first] = 0;
+        mp[p] = 0;
     }
-    cout<<ans+arr[n-1]<<endl;
+    cout << ans << endl;
 }
 
 int main()

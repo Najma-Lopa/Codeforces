@@ -29,36 +29,49 @@ ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
 void solve()
 {
-    ll n;
-    cin >> n;
+    ll n,q;
+    cin>>n>>q;
     ll arr[n];
-    ll array[n];
-    for (int i = 0; i < n; i++)
+    multiset<ll>ms;
+    for(int i=0;i<n;i++)
     {
-        cin >> arr[i];
+        cin>>arr[i];
+        ms.insert(arr[i]);
     }
-    for (int i = 0; i < n; i++)
+    while(q--)
     {
-        cin >> array[i];
-    }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
-    {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
+        char ch;
+        cin>>ch;
+        ll b,c;
+        cin>>b>>c;
+        // for(auto u:arr)
+        // {
+        //     cout<<u<<" ";
+        // }
+        // cout<<endl;
+        //sort(arr,arr+n);
+        if(ch=='?')
         {
-            ans+=dif;
+            auto lw=ms.lower_bound(b);
+            auto hi=ms.upper_bound(c);
+            ll p=distance(lw,hi);
+            cout<<p<<endl;
+        }
+        else if(ch=='!')
+        {
+       arr[b-1]=c;
+       ms.insert(arr[b-1]);
         }
     }
-    cout<<ans+arr[n-1]<<endl;
+
 }
 
 int main()
 {
     optimize();
 
-    int t;
-    cin >> t;
+    int t = 1;
+    // cin>>t;
 
     while (t--)
     {

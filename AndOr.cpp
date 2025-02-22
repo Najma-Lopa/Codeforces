@@ -27,30 +27,50 @@ ll prfSum[N];
 ll gcd(ll a, ll b) { return __gcd(a, b); }
 ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 
+int fun(vector<int>& arr)
+{
+    int n=arr.size();
+    if (n == 1)
+        {
+            return arr[0];
+        }
+        else
+        {
+            ll ans = arr[0];
+            for (int i = 1; i < n; i++)
+            {
+                if (i % 2 == 1)
+                {
+                    ans &= arr[i];
+                }
+                else
+                {
+                    ans |= arr[i];
+                }
+            }
+            return ans;
+        }
+}
 void solve()
 {
-    ll n;
+    int n;
     cin >> n;
-    ll arr[n];
-    ll array[n];
+    vector<int> arr;
     for (int i = 0; i < n; i++)
     {
-        cin >> arr[i];
+        int a;
+        cin >> a;
+        arr.push_back(a);
     }
-    for (int i = 0; i < n; i++)
+    int q;
+    cin >> q;
+    while (q--)
     {
-        cin >> array[i];
+        int a, b;
+        cin >> a >> b;
+        arr[a - 1] = b;
+        cout<<fun(arr)<<endl;
     }
-    ll ans=0;
-    for(int i=0;i<n-1;i++)
-    {
-        ll dif=arr[i]-array[i+1];
-        if(dif>0)
-        {
-            ans+=dif;
-        }
-    }
-    cout<<ans+arr[n-1]<<endl;
 }
 
 int main()
